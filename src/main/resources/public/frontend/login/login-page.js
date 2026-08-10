@@ -11,12 +11,16 @@ const BASE_URL = "http://localhost:8081"; // backend URL
  * - login button
  * - logout button (optional, for token testing)
  */
+const usernameInput = document.getElementById("username-input");
+const passwordInput = document.getElementById("password-input");
+const loginButton = document.getElementById("login-button");
+const logoutButton = document.getElementById("logout-button");
 
 /* 
  * TODO: Add click event listener to login button
  * - Call processLogin on click
  */
-
+loginButton.onclick = processLogin;
 
 /**
  * TODO: Process Login Function
@@ -42,9 +46,10 @@ const BASE_URL = "http://localhost:8081"; // backend URL
 async function processLogin() {
     // TODO: Retrieve username and password from input fields
     // - Trim input and validate that neither is empty
-
+    const username = usernameInput.value;
+    const password = passwordInput.value;
     // TODO: Create a requestBody object with username and password
-
+    const requestBody = {username, password};
     const requestOptions = {
         method: "POST",
         mode: "cors",
@@ -62,24 +67,33 @@ async function processLogin() {
 
     try {
         // TODO: Send POST request to http://localhost:8081/login using fetch with requestOptions
+        const response = await fetch('$BASE_URL/register', requestOptions);
+        
+
 
         // TODO: If response status is 200
         // - Read the response as text
         // - Response will be a space-separated string: "token123 true"
         // - Split the string into token and isAdmin flag
         // - Store both in sessionStorage using sessionStorage.setItem()
-
+        if(response.status === 200){
+            window.location.href = "../login/login-page.html";
+        
         // TODO: Optionally show the logout button if applicable
 
         // TODO: Add a small delay (e.g., 500ms) using setTimeout before redirecting
         // - Use window.location.href to redirect to the recipe page
-
+        }
         // TODO: If response status is 401
         // - Alert the user with "Incorrect login!"
-
+        else if(response.status === 401){
+            alert("Incorrect login!");
+        }
         // TODO: For any other status code
         // - Alert the user with a generic error like "Unknown issue!"
-
+        else{
+            alert("Unknown issue!");
+        }
     } catch (error) {
         // TODO: Handle any network or unexpected errors
         // - Log the error and alert the user

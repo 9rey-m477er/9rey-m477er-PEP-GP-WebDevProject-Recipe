@@ -70,8 +70,6 @@ async function processRegistration() {
         body: JSON.stringify(registerBody)
     };
     // await fetch(...)
-
-    
         if(username == "" || email == "" || password == "" || repeatPassword == "" ){
             alert("All fields must have a value");
             return;
