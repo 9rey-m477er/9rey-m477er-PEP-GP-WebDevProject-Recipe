@@ -51,7 +51,14 @@ async function processRegistration() {
     const email = emailInput.value;
     const password = passwordInput.value;
     const repeatPassword = repeatPasswordInput.value;
-    
+        if(username == "" || email == "" || password == "" || repeatPassword == "" ){
+            alert("All fields must have a value");
+            return;
+        }
+        if(password != repeatPassword){
+            alert("Passwords don't match");
+            return;
+        }
     // Example placeholder:
     // const registerBody = { username, email, password };
     const registerBody = {username, email, password};
@@ -70,14 +77,7 @@ async function processRegistration() {
         body: JSON.stringify(registerBody)
     };
     // await fetch(...)
-        if(username == "" || email == "" || password == "" || repeatPassword == "" ){
-            alert("All fields must have a value");
-            return;
-        }
-        if(password != repeatPassword){
-            alert("Passwords don't match");
-            return;
-        }
+
         const response = await fetch('$BASE_URL/register', requestOptions);
         if(response.status === 201){
             window.location.href = "../login/login-page.html";
