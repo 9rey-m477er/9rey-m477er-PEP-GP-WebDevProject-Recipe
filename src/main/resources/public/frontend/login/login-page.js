@@ -11,7 +11,7 @@ const BASE_URL = "http://localhost:8081"; // backend URL
  * - login button
  * - logout button (optional, for token testing)
  */
-const usernameInput = document.getElementById("username-input");
+const usernameInput = document.getElementById("login-input");
 const passwordInput = document.getElementById("password-input");
 const loginButton = document.getElementById("login-button");
 const logoutButton = document.getElementById("logout-button");
@@ -48,6 +48,10 @@ async function processLogin() {
     // - Trim input and validate that neither is empty
     const username = usernameInput.value;
     const password = passwordInput.value;
+    if(username == "" || password == ""){
+        alert("All fields must have a value");
+        return;
+    }
     // TODO: Create a requestBody object with username and password
     const requestBody = {username, password};
     const requestOptions = {
@@ -67,8 +71,11 @@ async function processLogin() {
 
     try {
         // TODO: Send POST request to http://localhost:8081/login using fetch with requestOptions
-        const response = await fetch('$BASE_URL/register', requestOptions);
-        
+        const response = await fetch(`${BASE_URL}/login`, requestOptions);
+        const token = await response.text();
+        const splitText = token.split(" ");
+        sessionStorage.setItem("auth-token", splitText[0]);
+        sessionStorage.setItem("is-admin", splitText[1]);
 
 
         // TODO: If response status is 200
@@ -77,8 +84,8 @@ async function processLogin() {
         // - Split the string into token and isAdmin flag
         // - Store both in sessionStorage using sessionStorage.setItem()
         if(response.status === 200){
-            window.location.href = "../login/login-page.html";
-        
+            window.location.href = "../recipe/recipe-page.html";
+            
         // TODO: Optionally show the logout button if applicable
 
         // TODO: Add a small delay (e.g., 500ms) using setTimeout before redirecting
@@ -97,6 +104,8 @@ async function processLogin() {
     } catch (error) {
         // TODO: Handle any network or unexpected errors
         // - Log the error and alert the user
+        console.log(error);
+        alert("An error occurred");
     }
 }
 
