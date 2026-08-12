@@ -271,7 +271,7 @@ window.addEventListener("DOMContentLoaded", () => {
     function refreshRecipeList() {
         // Implement refresh logic here
         recipeList.innerHTML = "";
-        recipes.length = 0;
+        //recipes.length = 0;
         recipes.forEach(recipe => {
             let li = document.createElement("li");
             li.innerText = recipe.name + " - " + recipe.instructions;
