@@ -86,7 +86,8 @@ window.addEventListener("DOMContentLoaded", () => {
             }
             const response = await fetch(`${BASE_URL}/recipes?name=${search}`, responseOptions);
             const results = await response.json();
-            refreshRecipeList();
+            recipes = results;
+            refreshRecipeList()
         }catch(error) {
             console.log(error);
             alert("An error occurred");
