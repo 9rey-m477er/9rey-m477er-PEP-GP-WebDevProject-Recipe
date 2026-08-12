@@ -30,30 +30,19 @@ window.addEventListener("DOMContentLoaded", () => {
     const recipeUpdateSubmit = document.getElementById("update-recipe-submit-input");
     const recipeDeleteSubmit = document.getElementById("delete-recipe-submit-input");
 
+    /*
+     * TODO: Show logout button if auth-token exists in sessionStorage
+     */
     if(sessionStorage.getItem("auth-token")){
         logout.hidden = false;
     }
 
-    if(sessionStorage.getItem("is-admin") === "true"){
-        adminLink.hidden = false;
-    }
-
-    recipeAddSubmit.onclick = addRecipe;
-    recipeDeleteSubmit.onclick = deleteRecipe;
-    recipeUpdateSubmit.onclick = updateRecipe;
-    searchButton.onclick = searchRecipes;
-    logout.onclick = processLogout;
-
-    getRecipes();
-
-    /*
-     * TODO: Show logout button if auth-token exists in sessionStorage
-     */
-    
     /*
      * TODO: Show admin link if is-admin flag in sessionStorage is "true"
      */
-
+    if(sessionStorage.getItem("is-admin") === "true"){
+        adminLink.hidden = false;
+    }
     /*
      * TODO: Attach event handlers
      * - Add recipe button → addRecipe()
@@ -62,11 +51,15 @@ window.addEventListener("DOMContentLoaded", () => {
      * - Search button → searchRecipes()
      * - Logout button → processLogout()
      */
-
+        recipeAddSubmit.onclick = addRecipe;
+        recipeDeleteSubmit.onclick = deleteRecipe;
+        recipeUpdateSubmit.onclick = updateRecipe;
+        searchButton.onclick = searchRecipes;
+        logout.onclick = processLogout;
     /*
      * TODO: On page load, call getRecipes() to populate the list
      */
-
+    getRecipes();
 
     /**
      * TODO: Search Recipes Function
