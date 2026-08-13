@@ -216,10 +216,6 @@ window.addEventListener("DOMContentLoaded", () => {
                 referrerPolicy: "no-referrer",
             }
             const response = await fetch(`${BASE_URL}/recipes/${id}`, responseOptions);
-            if(response.status === 403){
-                alert("Only admins can delete recipes");
-                return'
-            }
             recipeDeleteInput.value = "";
             getRecipes();
         } catch(error) {
