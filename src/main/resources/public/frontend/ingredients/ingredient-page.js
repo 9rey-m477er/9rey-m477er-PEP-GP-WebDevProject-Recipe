@@ -173,8 +173,7 @@ function refreshIngredientList() {
     ingredients.forEach(ingredients => {
         let li = document.createElement("li");
         let name = document.createElement("p");
-        p.text = ingredients.name;
-        li.appendChild(p);
+        li.innerText = ingredients.name;
         ingredientListContainer.appendChild(li);
     });
 }
