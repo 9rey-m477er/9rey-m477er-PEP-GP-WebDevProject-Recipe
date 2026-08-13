@@ -216,7 +216,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 referrerPolicy: "no-referrer",
             }
             const response = await fetch(`${BASE_URL}/recipes/${id}`, responseOptions);
-            //recipeDeleteInput.value = "";
+            recipeDeleteInput.value = "";
             getRecipes();
         } catch(error) {
             console.log(error);
