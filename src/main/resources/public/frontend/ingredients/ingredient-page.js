@@ -12,21 +12,27 @@ const BASE_URL = "http://localhost:8081"; // backend URL
  * - searchInput (optional for future use)
  * - adminLink (if visible conditionally)
  */
+const addIngredientNameInput = document.getElementById("add-ingredient-name-input");
+const addIngredientButton = document.getElementById("add-ingredient-submit-button");
+const deleteIngredientNameInput = document.getElementById("delete-ingredient-name-input");
+const deleteIngredientButton = document.getElementById("delete-ingredient-submit-button");
+const ingredientListContainer = document.getElementById("ingredient-list");
 
 /* 
  * TODO: Attach 'onclick' events to:
  * - "add-ingredient-submit-button" → addIngredient()
  * - "delete-ingredient-submit-button" → deleteIngredient()
  */
-
+addIngredientButton.onclick = addIngredient;
+deleteIngredientButton.onclick = deleteIngredient;
 /*
  * TODO: Create an array to keep track of ingredients
  */
-
+let ingredients = [];
 /* 
  * TODO: On page load, call getIngredients()
  */
-
+getIngredients();
 
 /**
  * TODO: Add Ingredient Function
