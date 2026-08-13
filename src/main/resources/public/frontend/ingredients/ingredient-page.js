@@ -128,7 +128,7 @@ async function deleteIngredient() {
     // Implement delete logic here
     const ingredient = deleteIngredientNameInput.value;
     try {
-        const target = ingredientListContainer.find(i => i.textContent.trim() === ingredient);
+        const target = ingredients.find(i => i.name === ingredient);
         if(!target){
             alert("Ingredient not found");
             return;
@@ -173,7 +173,7 @@ function refreshIngredientList() {
     ingredients.forEach(ingredients => {
         let li = document.createElement("li");
         let name = document.createElement("p");
-        p.textContent = ingredients.name;
+        p.text = ingredients.name;
         li.appendChild(p);
         ingredientListContainer.appendChild(li);
     });
