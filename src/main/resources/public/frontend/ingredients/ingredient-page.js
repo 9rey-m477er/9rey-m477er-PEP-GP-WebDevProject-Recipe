@@ -104,7 +104,7 @@ async function getIngredients() {
         }
         const response = await fetch(`${BASE_URL}/ingredients`, responseOptions);
         const results = await response.json();
-        ingredientListContainer = results;
+        ingredients = results;
         refreshIngredientList();
     } catch(error) {
         console.log(error);
@@ -130,7 +130,7 @@ async function deleteIngredient() {
             const ingredient = deleteIngredientNameInput.value;
 
             try {
-                const target = ingredientListContainer.find(i => i.name === ingredient);
+                const target = ingredients.find(i => i.name === ingredient);
                 if(!target){
                     alert("Ingredient not found");
                     return;
@@ -172,9 +172,9 @@ async function deleteIngredient() {
 function refreshIngredientList() {
     // Implement ingredient list rendering logic here
     ingredientListContainer.innerHTML = "";
-    ingredients.forEach(ingredient => {
+    ingredients.forEach(ingredients => {
         let li = document.createElement("li");
-        li.innerText = ingredient.name;
+        li.innerText = ingredients.name;
         ingredientListContainer.appendChild(li);
     });
 }
