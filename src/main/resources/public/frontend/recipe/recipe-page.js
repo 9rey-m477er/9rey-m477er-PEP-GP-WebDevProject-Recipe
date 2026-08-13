@@ -195,7 +195,10 @@ window.addEventListener("DOMContentLoaded", () => {
     async function deleteRecipe() {
         // Implement delete logic here
         const recipeName = recipeDeleteInput.value;
-        if()
+        if(recipeName === ""){
+            alert("Need a recipe name");
+            return;
+        }
         try {
             const target = recipes.find(r => r.name === recipeName);
             if(!target){
