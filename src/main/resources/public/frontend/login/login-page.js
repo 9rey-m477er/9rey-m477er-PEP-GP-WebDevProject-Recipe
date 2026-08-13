@@ -84,12 +84,17 @@ async function processLogin() {
         // - Split the string into token and isAdmin flag
         // - Store both in sessionStorage using sessionStorage.setItem()
         if(response.status === 200){
-            window.location.href = "../recipe/recipe-page.html";
+            
             
         // TODO: Optionally show the logout button if applicable
         logoutButton.hidden = false;
         // TODO: Add a small delay (e.g., 500ms) using setTimeout before redirecting
         // - Use window.location.href to redirect to the recipe page
+        const responseText = await response.text;
+        setTimeout(() => {
+            window.location.href = "../recipe/recipe-page.html";
+        }, 500)
+        
         }
         // TODO: If response status is 401
         // - Alert the user with "Incorrect login!"
