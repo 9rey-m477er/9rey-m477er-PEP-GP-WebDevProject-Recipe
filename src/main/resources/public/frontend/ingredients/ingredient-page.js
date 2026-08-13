@@ -125,37 +125,35 @@ async function getIngredients() {
  * - On failure or not found: alert the user
  */
 async function deleteIngredient() {
-    // Implement delete ingredient logic here
-            // Implement delete logic here
-            const ingredient = deleteIngredientNameInput.value;
+    // Implement delete logic here
+    const ingredient = deleteIngredientNameInput.value;
+    try {
+        const target = ingredients.find(i => i.name === ingredient);
+        if(!target){
+            alert("Ingredient not found");
+            return;
+        }
+        const id = target.id;
 
-            try {
-                const target = ingredients.find(i => i.name === ingredient);
-                if(!target){
-                    alert("Ingredient not found");
-                    return;
-                }
-                const id = target.id;
-    
-                const responseOptions = {
-                    method: "DELETE",
-                    mode: "cors",
-                    cache: "no-cache",
-                    credentials: "same-origin",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer " + sessionStorage.getItem("auth-token")
-                    },
-                    redirect: "follow",
-                    referrerPolicy: "no-referrer",
-                }
-                const response = await fetch(`${BASE_URL}/ingredients/${id}`, responseOptions);
-                deleteIngredientNameInput.value = "";
-                getIngredients();
-            } catch(error) {
-                console.log(error);
-                alert("An error occurred");
-            }
+        const responseOptions = {
+            method: "DELETE",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + sessionStorage.getItem("auth-token")
+            },
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+        }
+        const response = await fetch(`${BASE_URL}/ingredients/${id}`, responseOptions);
+        deleteIngredientNameInput.value = "";
+        getIngredients();
+    } catch(error) {
+        console.log(error);
+        alert("An error occurred");
+    }
 }
 
 
