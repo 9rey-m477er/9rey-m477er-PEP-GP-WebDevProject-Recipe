@@ -47,6 +47,34 @@ getIngredients();
  */
 async function addIngredient() {
     // Implement add ingredient logic here
+    const addedName = addIngredientNameInput.value;
+
+    if(addedName == ""){
+        alert("Missing ingredient name");
+        return;
+    }
+
+    try {
+        const responseOptions = {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + sessionStorage.getItem("auth-token")
+            },
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify({name: addedName})
+        }
+        const response = await fetch(`${BASE_URL}/ingredients`, responseOptions);
+        addIngredientNameInput.value = "";
+        getIngredients();
+    } catch(error) {
+        console.log(error);
+        alert("An error occurred");
+    }
 }
 
 
