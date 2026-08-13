@@ -195,9 +195,6 @@ window.addEventListener("DOMContentLoaded", () => {
     async function deleteRecipe() {
         // Implement delete logic here
         const recipeName = recipeDeleteInput.value;
-        if(sessionStorage.getItem("is-admin") === false){
-            alert("Only admins can delete recipes");
-        }
         try {
             const target = recipes.find(r => r.name === recipeName);
             if(!target){
@@ -219,6 +216,10 @@ window.addEventListener("DOMContentLoaded", () => {
                 referrerPolicy: "no-referrer",
             }
             const response = await fetch(`${BASE_URL}/recipes/${id}`, responseOptions);
+            if(response.status === 403){
+                alert("Only admins can delete recipes");
+                return'
+            }
             recipeDeleteInput.value = "";
             getRecipes();
         } catch(error) {
