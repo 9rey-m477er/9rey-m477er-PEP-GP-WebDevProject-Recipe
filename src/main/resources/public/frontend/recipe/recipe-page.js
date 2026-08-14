@@ -222,6 +222,7 @@ window.addEventListener("DOMContentLoaded", () => {
             const response = await fetch(`${BASE_URL}/recipes/${id}`, responseOptions);
             recipeDeleteInput.value = "";
             getRecipes();
+            alert("Delete successful");
         } catch(error) {
             console.log(error);
             alert("An error occurred");
