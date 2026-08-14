@@ -194,15 +194,16 @@ window.addEventListener("DOMContentLoaded", () => {
      */
     async function deleteRecipe() {
         // Implement delete logic here
+        if(sessionStorage.getItem("is-admin") === false){
+            alert("Only admins can delete recipes");
+            return;
+        }
         const recipeName = recipeDeleteInput.value;
         if(recipeName === ""){
             alert("Need a recipe name");
             return;
         }
-        if(sessionStorage.getItem("is-admin") === false){
-                alert("Only admins can delete recipes");
-                return;
-            }
+        
         try {
             const target = recipes.find(r => r.name === recipeName);
             if(!target){
