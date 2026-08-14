@@ -194,7 +194,7 @@ window.addEventListener("DOMContentLoaded", () => {
      */
     async function deleteRecipe() {
         // Implement delete logic here
-        if(sessionStorage.getItem("is-admin") === false){
+        if(sessionStorage.getItem("is-admin") !== true){
             alert("Only admins can delete recipes");
             return;
         }
